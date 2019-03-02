@@ -14,7 +14,7 @@ Foursquare API(https://developer.foursquare.com/)
 
 ## Site
 
-https://ngemir.github.io/NearBest-map
+https://ngemir.github.io/nearbest-map
 
 ## How to run the Application localy
 
@@ -24,7 +24,7 @@ Need has Installed:
 
 
 Clone this repository with some Command Prompt (CMD, Windows Powershell, git Bash, etc...):
-' git clone https://github.com/ngemir/NearBest-map '
+' git clone https://github.com/ngemir/neaebest-map.git '
 
 ### How to install the Dependency
 
