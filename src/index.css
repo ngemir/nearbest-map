@@ -1,14 +1,355 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
 body {
+  color: #4e595d;
+  font: 18px 'Roboto Condensed', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.container {
+  width: 100%;
+  height: 100vh;
+  background: rgb(90, 90, 90);
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: #000000;
+}
+
+.list {
+  background: rgb(90, 90, 90);
+  color: white;
+  position: absolute;
+  -ms-transform: translate(-260px, 0);
+  -webkit-transform: translate(-260px, 0);
+  transform: translate(-300px, 0);
+  transition: transform 0.5s ease;
+  width: 260px;
+  z-index: 5;
+  height: 100%;
+}
+
+.map {
+  height: 100vh;
+}
+
+#restaurant-list {
+  position: fixed;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  height: 50px;
+  width: 30px;
+  cursor: pointer;
+  pointer-events: auto;
+  margin-left: 25px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  float: left;
+}
+
+.icon-bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #aaa;
+  transition: .3s;
+}
+.icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
+#restaurant-list * {
+  visibility: visible;
+}
+
+#restaurant-list:focus-within .button {
+  pointer-events: none;
+}
+#restaurant-list:focus-within .icon-bar:nth-of-type(1) {
+  transform: translate3d(0,8px,0) rotate(45deg);
+}
+#restaurant-list:focus-within .icon-bar:nth-of-type(2) {
+  opacity: 0;
+}
+#restaurant-list:focus-within .icon-bar:nth-of-type(3) {
+  transform: translate3d(0,-8px,0) rotate(-45deg);
+}
+
+#restaurant-list:focus-within .list-content {
+  transform: none;
+}
+
+header {
+  color: #ffee00;
+  font-family: 'Lobster', cursive;
+  font-size: 40px;
+  font-weight: 700;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  margin: 0px;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: rgb(90, 90, 90);
+  position: fixed;
+  display: flex;
+  z-index: 2;
+}
+
+#list-content {
+  margin-top: 50px;
+  padding: 0px 20px;
+  max-width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgb(90, 90, 90);
+  pointer-events: auto;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  will-change: transform;
+  contain: paint;
+}
+
+#list-content ul {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#list-content li a {
+  padding: 10px 5px;
+  display: block;
+  text-transform: uppercase;
+  transition: color .1s;
+}
+
+#list-content li a:hover {
+  color: #BF7497;
+}
+
+#list-content li:not(.small) + .small {
+  margin-top: auto;
+}
+
+#restaurant-list:focus-within #list-content {
+  transform: none;
+}
+
+.foursquare-logo {
+  background: #ffffffde;
+  max-width: 100%;
+}
+
+.list-places {
+  position: relative;
+  list-style-type: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+
+.place {
+  margin: 10px 0;
+  padding: 7px 10px;
+}
+
+.list-places .place:hover {
+  cursor: pointer;
+  background-color: #eeff00;
+  color: #000000;
+}
+
+.query {
+  border: 5px solid #fff;
+  -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
+  font: 18px 'Source Sans Pro', sans-serif;
+  margin: 0 0 10px 0;
+  padding: 10px;
+  width: 230px;
+}
+
+.error {
+  color: #f94877;
+  font-style: italic;
+  padding-top: 400px;
+  text-align: center;
+}
+
+.no-results {
+  color: #f94877;
+  font-style: italic;
+  text-align: center;
+}
+
+.toggle {
+  background: #fff;
+  border: 2px solid #4e595d;
+  border-radius: 5px;
+  fill: #4e595d;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+  z-index: 5;
+}
+
+.open {
+  -ms-transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.loading-map {
+  display: flex;
+  position: static;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
+  justify-content: center;
+  text-align: center;
+}
+
+.loading-fs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loading-text {
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* infowindow */
+
+.place {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.place-title,
+.place-contact,
+.place-phone {
+  margin: 0 0 0 10px;
+}
+
+.place-data {
+  font-style: italic;
+  margin: 0 0 0 10px;
+}
+
+.place-price {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 10px 10px;
+}
+
+.place-phone {
+  color: #4e595d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.place-contact,
+.place-data,
+.place-tip,
+.place-phone {
+  font-size: 14px;
+}
+
+.place-tip {
+  font-style: italic;
+}
+
+.place-link {
+  color: #f94877;
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 20px 0 0 10px;
+  padding: 10px;
+  text-align: right;
+  text-decoration: none;
+}
+
+.place-link:hover,
+.place-phone:hover {
+  color: #3594c5;
+}
+
+.fs-link {
+  height: 30px;
+  vertical-align: middle;
+}
+
+.venue-error {
+  color: #f94877;
+  text-align: center;
+}
+/* scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+@media (min-width: 600px) {
+  .list {
+    -ms-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  .map {
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  /* scrollbar*/
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    background: #02d9ff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transition: background 1s; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fffb00;
+  }
+}
+
+.list-places li.place {
+  padding: 10px;
 }

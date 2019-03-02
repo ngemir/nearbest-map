@@ -2,7 +2,9 @@
   "name": "nearbest-map",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ngemir.github.io/nearbest-map/",
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5"
