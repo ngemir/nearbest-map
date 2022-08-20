@@ -24,7 +24,7 @@ Need has Installed:
 
 
 Clone this repository with some Command Prompt (CMD, Windows Powershell, git Bash, etc...):
-' git clone https://github.com/ngemir/neaebest-map.git '
+' git clone https://github.com/SwaveNg/neaebest-map.git '
 
 ### How to install the Dependency
 
