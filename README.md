@@ -47,4 +47,4 @@ The service worker is from the create-react-app and it only works if you execute
 ' npm run build '
 
 ## Made by
-Emir Takayama (https://github.com/SwaveNg)
+Emir Takayama (https://github.com/ngemir)
